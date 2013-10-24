@@ -14,6 +14,7 @@
 using namespace std;
 using namespace libconfig;
 
+
 typedef enum {
     ORT, ORF
 } CLASSIFIER_TYPE;
@@ -58,7 +59,8 @@ double timeIt(int reset) {
     }
 }
 
-int main(int argc, char *argv[]) {
+
+int main2(int argc, char *argv[]) {
     // Parsing command line
     string confFileName;
     int classifier = -1, doTraining = false, doTesting = false, doT2 = false, inputCounter = 1;
@@ -159,3 +161,4 @@ int main(int argc, char *argv[]) {
 
     return EXIT_SUCCESS;
 }
+

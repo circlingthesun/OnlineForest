@@ -2,19 +2,24 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 file(GLOB SOURCES *.cpp)
 
-include_directories("/usr/local/include")
-link_directories("/usr/local/lib")
+find_package(LAPACK REQUIRED)
+find_package(Config REQUIRED)
+find_package(GMM REQUIRED)
 
-add_executable(Online-Forest ${SOURCES})
+include_directories("../include ${CONFIG_INCLUDE_DIR} ${GMM_INCLUDE_DIR}")
+
+SET(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} ${LAPACK_LINKER_FLAGS}")
+
+
+add_library(onlineforest STATIC ${SOURCES})
 
 target_link_libraries(
-    Online-Forest
-    config++
-    atlas
-    lapack
-    blas
+    onlineforest
+    ${CONFIG_LIBRARIES}
+    ${LAPACK_LIBRARIES}
 )
 
-install(TARGETS Online-Forest
-    RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
-)
+
+#install(TARGETS onlineforest
+#    RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+#)
