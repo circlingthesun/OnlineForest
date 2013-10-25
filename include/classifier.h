@@ -9,7 +9,7 @@ using namespace std;
 
 class Classifier {
 public:
-    virtual ~Classifier() = 0;
+    virtual ~Classifier();
     virtual void update(Sample &sample) = 0;
     virtual void train(DataSet &dataset) = 0;
     virtual Result eval(Sample &sample) = 0;
